@@ -1,0 +1,207 @@
+html {
+    --s: 50px;
+    --c: #191b22;
+    --_s: calc(2*var(--s)) calc(2*var(--s));
+    --_g: 35.36% 35.36% at;
+    --_c: #0000 66%,#20222a 68% 70%,#0000 72%;
+    background: 
+      radial-gradient(var(--_g) 100% 25%,var(--_c)) var(--s) var(--s)/var(--_s), 
+      radial-gradient(var(--_g) 0 75%,var(--_c)) var(--s) var(--s)/var(--_s), 
+      radial-gradient(var(--_g) 100% 25%,var(--_c)) 0 0/var(--_s), 
+      radial-gradient(var(--_g) 0 75%,var(--_c)) 0 0/var(--_s), 
+      repeating-conic-gradient(var(--c) 0 25%,#0000 0 50%) 0 0/var(--_s), 
+      radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
+    background-attachment: fixed;
+    font-family: Consolas, monaco, monospace;
+  }
+
+h1{
+    text-align: center;
+    color: aliceblue;
+    font-size: 10vh;
+    animation-name: title;
+    animation-duration: 1.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+#stats{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: #09ff00;
+    text-align: center;
+    background-color: #2f405f4f;
+}
+#stats td{
+    text-align: left;
+}
+#result{
+    width: 100%;
+    color: aliceblue;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+#computer_icon{
+    font-size: 25rem;
+    position: absolute;
+    top: 13%;
+    right: 2%;
+}
+#player_icon{
+    font-size: 25rem;
+    position: absolute;
+    top: 13%;
+    left: 2%;
+}
+#player_icon::after{
+    content: "\1F600";
+}
+
+#player_icon.win::after{
+    content: "\1F60E";
+}
+#player_icon.lose::after{
+    content: "\1F612";
+}
+#player_icon.tie::after{
+    content: "\1F62C";
+}
+
+#button_container{
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    margin-top: 52vh;
+}
+
+button{
+    width: 7%;
+    height: 7%;
+    background-color: transparent;
+    border: solid white 10px;
+    border-radius: 3rem;
+    padding: 1.4rem;
+    margin: 1rem;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+  button img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+  }
+
+  button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    border: solid white 5px;
+    filter: drop-shadow(0px 0px 1px #fff)
+    drop-shadow(0px 0px 2px #e2fd4a)
+    drop-shadow(0px 0px 3px #eeff00)
+  }
+
+
+  #player_image, #computer_image{
+    width: 15%;
+    filter: drop-shadow(0px 0px 2px #fff);
+    animation-duration: 0.6s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    position: absolute;
+    transition: all 1.2s;
+  }
+
+  #player_image.hidden{
+    transform: translateX(-150%) scale(-1.6,1.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  #computer_image.hidden{
+    transform: translateX(150%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #player_image{
+      top: 40%;
+      left: 25%;
+      transform: rotate(45deg) scale(-1.6,1.6);
+  }
+
+  #computer_image{
+    top: 40%;
+    left: 60%;
+    transform: rotate(-45deg) scale(1.6);
+  }
+
+  #computer_image.loseAnim{
+    transform: translateY(20%) rotate(-80deg) scale(0.8);
+  }
+  #player_image.loseAnim{
+    transform: translateY(20%) rotate(80deg) scale(-0.8,0.8);
+  }
+
+  #player_image.winAnim{
+    animation-name: green_glow_effect;
+    transform: translate(100%,-50%) scale(-1.8,1.8);
+  }
+
+  #computer_image.winAnim{
+    animation-name: red_glow_effect;
+    transform: translate(-100%,-50%) scale(1.8);
+  }
+
+  @keyframes green_glow_effect {
+    0%{
+        filter: drop-shadow(0px 0px 1px #fff)
+    drop-shadow(0px 0px 3px #fff)
+    drop-shadow(0px 0px 6px #8fff80)
+    drop-shadow(0px 0px 10px #5cff4d)
+    drop-shadow(0px 0px 15px #09ff00)
+    }
+
+    100%{
+        filter: drop-shadow(0px 0px 2px #fff)
+    drop-shadow(0px 0px 5px #fff)
+    drop-shadow(0px 0px 10px #8fff80)
+    drop-shadow(0px 0px 15px #5cff4d)
+    drop-shadow(0px 0px 19px #09ff00)
+    }
+  }
+
+  @keyframes red_glow_effect {
+    0%{
+        filter: drop-shadow(0px 0px 1px #fff)
+    drop-shadow(0px 0px 3px #fff)
+    drop-shadow(0px 0px 6px #ff8080)
+    drop-shadow(0px 0px 10px #ff4d4d)
+    drop-shadow(0px 0px 15px #ff0000)
+    }
+
+    100%{
+        filter: drop-shadow(0px 0px 2px #fff)
+    drop-shadow(0px 0px 5px #fff)
+    drop-shadow(0px 0px 10px #ff8080)
+    drop-shadow(0px 0px 15px #ff4d4d)
+    drop-shadow(0px 0px 19px #ff0000)
+    }
+  }
+
+  @keyframes title {
+    0%{
+        filter: drop-shadow(0px 0px 1px #fff)
+    drop-shadow(0px 0px 3px #fff)
+    drop-shadow(0px 0px 6px #ff80b3)
+    drop-shadow(0px 0px 10px #ff4d94)
+    drop-shadow(0px 0px 15px #ff0066)
+    }
+
+    100%{
+        filter: drop-shadow(0px 0px 1px #fff)
+    drop-shadow(0px 0px 3px #fff)
+    drop-shadow(0px 0px 8px #ff80b3)
+    drop-shadow(0px 0px 12px #ff4d94)
+    drop-shadow(0px 0px 17px #ff0066)
+    }
+  }
